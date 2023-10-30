@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,11 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+
+    @GetMapping("/healthcheck")
+    public String getHealth() {
+        return "working...";
+    }
 
     @GetMapping("/employees")
     public List<Employee> getAllEmployees() {
@@ -37,7 +43,7 @@ public class EmployeeController {
         employeeService.saveEmployee(employee);
     }
 
-    @DeleteMapping("/employee/{id}")
+    @DeleteMapping("/employeedel/{id}")
     public void removeEmployee(@PathVariable String id){
         employeeService.deleteById(id);
     }
